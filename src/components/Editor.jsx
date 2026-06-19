@@ -1,10 +1,13 @@
-export default function Editor({ code, setCode }) {
+import Editor from "@monaco-editor/react";
+
+export default function CodeEditor({ code, setCode }) {
   return (
-    <textarea
-      className="editor"
-      placeholder="Paste Java code here..."
+    <Editor
+      height="300px"
+      defaultLanguage="java"
+      theme="vs-dark"
       value={code}
-      onChange={(e) => setCode(e.target.value)}
+      onChange={(value) => setCode(value)}
     />
   );
 }
