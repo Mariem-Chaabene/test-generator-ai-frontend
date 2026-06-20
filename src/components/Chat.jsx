@@ -18,7 +18,7 @@ export default function Chat() {
   return (
     <div className="chat">
       
-      {/* messages */}
+      {/* messages 
       <div className="messages">
         
         <div className="bubble user">
@@ -31,12 +31,11 @@ export default function Chat() {
           </div>
         )}
 
-      </div>
+      </div>*/}
 
       {/* input bar */}
-      <div className="inputBar">
         <textarea
-          placeholder="Paste Java code..."
+          placeholder="Paste code..."
           onChange={(e) => setCode(e.target.value)}
         />
 
@@ -45,6 +44,5 @@ export default function Chat() {
         </button>
       </div>
 
-    </div>
   );
 }
