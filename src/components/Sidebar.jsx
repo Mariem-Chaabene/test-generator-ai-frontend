@@ -4,9 +4,9 @@ export default function Sidebar() {
       <h2>⚡ AI Test Generator</h2>
 
       <div className="menu">
-        <p>+ New generation</p>
-        <p>History</p>
-        <p>Settings</p>
+        <button>New Generation</button>
+        <button>History</button>
+        <button>Settings</button>
       </div>
     </div>
   );
