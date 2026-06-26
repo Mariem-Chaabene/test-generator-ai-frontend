@@ -10,6 +10,10 @@ body {
   height: 100vh;
 }
 
+h2 {
+  color: rgb(0, 74, 119);
+}
+
 /* Sidebar */
 
 .sidebar {
@@ -76,8 +80,8 @@ input[type="file"] {
 /* Buttons */
 
 button {
-  background: #2563eb;
-  color: white;
+  background: #c2e7ff;
+  color: rgb(0, 74, 119);
   border: none;
   border-radius: 10px;
   padding: 12px 20px;
@@ -120,7 +124,6 @@ button:hover {
 }
 
 .promptBox {
-  max-width: 900px;
   width: 100%;
   margin: auto;
   display: flex;
@@ -155,15 +158,12 @@ button:hover {
 .iconButton {
   width: 42px;
   height: 42px;
-
   border-radius: 50%;
-
-  background: #f1f5f9;
-
+  background: #c2e7ff;
+  color: rgb(0, 74, 119);
   display: flex;
   align-items: center;
   justify-content: center;
-
   cursor: pointer;
 }
 
@@ -174,23 +174,18 @@ button:hover {
 .sendButton {
   width: 50px;
   height: 42px;
-
   border-radius: 50%;
-
-  background: #2563eb;
-  color: white;
-
+  background: #c2e7ff;
+  color: rgb(0, 74, 119);
   border: none;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   cursor: pointer;
 }
 
 .sendButton:hover {
-  background: #1d4ed8;
+  background: #c2e7ff;
 }
 
 .code-block {
@@ -257,8 +252,6 @@ button:hover {
 }
 
 
-/* activation après 1er message */
-
 /* messages */
 .chatBody {
   flex: 1;
@@ -271,25 +264,31 @@ button:hover {
 
 
 /* message style */
+
+
 .message {
   max-width: 70%;
   margin: 6px 0;
-  padding: 10px;
-  border-radius: 10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgb(242, 240, 240);
+  color: #111827;
+  font-size: 14px;
+  line-height: 1.5;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
 }
 
-/* user à droite */
+.message {
+  border: 1px solid #e5e7eb;
+  backdrop-filter: blur(6px);
+}
+
 .message.user {
   align-self: flex-end;
-  background: #2b6fff;
-  color: white;
 }
 
-/* bot à gauche */
 .message.bot {
   align-self: flex-start;
-  background: #1f2937;
-  color: white;
 }
 
 /* input en bas */

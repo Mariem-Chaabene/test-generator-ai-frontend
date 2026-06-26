@@ -169,7 +169,7 @@ const send = async () => {
 
           <textarea
             className="promptInput"
-            placeholder="Paste Java code..."
+            placeholder="Paste code..."
             value={code}
             rows={1}
             onChange={(e) => {
