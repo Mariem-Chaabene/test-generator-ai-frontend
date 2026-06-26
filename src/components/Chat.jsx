@@ -40,6 +40,7 @@ export default function Chat() {
 
     const userMessage = {
       role: "user",
+      type: "code",
       text: code
     };
 
@@ -85,6 +86,18 @@ export default function Chat() {
     }
   };
 
+
+  const downloadUploadedFile = (file) => {
+    const url = URL.createObjectURL(file);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = file.name;
+    a.click();
+
+    URL.revokeObjectURL(url);
+  };
+
   // UPLOAD FILE
   const uploadFile = async () => {
 
@@ -97,7 +110,9 @@ export default function Chat() {
 
     const fileMessage = {
       role: "user",
-      text: file.name
+      type: "file",
+      text: file.name,
+      fileObject: file
     };
 
     setMessages(prev => [...prev, fileMessage]);
@@ -153,26 +168,41 @@ export default function Chat() {
             className={`message ${msg.role}`}
           >
 
-            <div className="codeBlock">
+            {msg.type === "file" ? (
 
-              <div className="codeHeader">
+              <div className="fileBlock">
+                <span className="fileIcon">📄</span>
+
                 <button
-                  className="copyButton"
-                  onClick={() => copyToClipboard(msg.text, i)}
-                  title="Copy code"
+                  className="fileLink"
+                  onClick={() => downloadUploadedFile(msg.fileObject)}
                 >
-                  <FaRegCopy />
+                  {msg.text}
                 </button>
+              </div>
 
-                {copiedIndex === i && (
-                  <span className="copiedText">Copied!</span>
-                )}
-              </div>  
+            ) : (
 
+              <div className="codeBlock">
 
-              <pre>{msg.text}</pre>
+                <div className="codeHeader">
+                  <button
+                    className="copyButton"
+                    onClick={() => copyToClipboard(msg.text, i)}
+                  >
+                    <FaRegCopy />
+                  </button>
 
-            </div>
+                  {copiedIndex === i && (
+                    <span className="copiedText">Copied!</span>
+                  )}
+                </div>
+
+                <pre>{msg.text}</pre>
+
+              </div>
+
+            )}
           </div>
         ))}
 

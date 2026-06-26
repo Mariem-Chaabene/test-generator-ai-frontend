@@ -264,7 +264,7 @@ button {
 .message {
   max-width: 80%;
   margin: 6px 0;
-  padding: 12px 14px;
+  padding: 15px 29px;
   border-radius: 42px;
   background: #c2e7ff;
   color: rgb(0, 74, 119);
@@ -324,7 +324,6 @@ button {
   width: 100%;
   overflow: auto;    
   border-radius: 8px;
-  padding: 10px;
 }
 
 
@@ -374,4 +373,31 @@ button {
 
 .copyButton:hover {
   color: white;
+}
+
+
+.fileBlock {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fileIcon {
+  font-size: 18px;
+}
+
+.fileLink {
+  background: transparent;
+  border: none;
+  padding: 0;
+
+  color: rgb(0, 74, 119);
+  font-weight: 600;
+
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.fileLink:hover {
+  color: #2563eb;
 }
