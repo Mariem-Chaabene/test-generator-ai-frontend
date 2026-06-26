@@ -267,28 +267,28 @@ button:hover {
 
 
 .message {
-  max-width: 70%;
+  max-width: 80%;
   margin: 6px 0;
   padding: 12px 14px;
-  border-radius: 14px;
-  background: rgb(242, 240, 240);
-  color: #111827;
+  border-radius: 42px;
+  background: #c2e7ff;
+  color: rgb(0, 74, 119);
   font-size: 14px;
   line-height: 1.5;
   box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-}
-
-.message {
-  border: 1px solid #e5e7eb;
-  backdrop-filter: blur(6px);
+    white-space: normal;
 }
 
 .message.user {
   align-self: flex-end;
-}
 
+}
+  
 .message.bot {
   align-self: flex-start;
+  width: fit-content;
+  max-width: 90%;
+
 }
 
 /* input en bas */
@@ -318,4 +318,21 @@ button:hover {
 
 .chat:not(.active) .chatBody {
   display: none;
+}
+
+
+.codeBlock {
+  width: 100%;
+  max-height: 400px;   
+  overflow-y: auto;    
+  overflow-x: auto;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.codeBlock pre {
+  margin: 0;
+  white-space: pre;   
+  font-family: monospace;
+  font-size: 13px;
 }

@@ -1,7 +1,7 @@
 export default function Sidebar() {
   return (
     <div className="sidebar">
-      <h2>⚡ AI Test Generator</h2>
+      <h2>⚡Test Generator</h2>
 
       <div className="menu">
         <button>New Generation</button>
