@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import Result from "./Result";
-import { FaArrowUp, FaPlus } from "react-icons/fa";
-
+import { FaArrowUp, FaPlus, FaRegCopy } from "react-icons/fa";
 export default function Chat() {
 
   const [code, setCode] = useState("");
@@ -9,7 +8,7 @@ export default function Chat() {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [started, setStarted] = useState(false);
-
+  const [copiedIndex, setCopiedIndex] = useState(null);
   const endRef = useRef(null);
 
   // auto scroll like ChatGPT
@@ -17,59 +16,74 @@ export default function Chat() {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // SEND TEXT
-const send = async () => {
+  const copyToClipboard = async (text, index) => {
+    try {
+      await navigator.clipboard.writeText(text);
 
-  if (!code.trim()) return;
+      setCopiedIndex(index);
 
-  if (!started) setStarted(true);
+      setTimeout(() => {
+        setCopiedIndex(null);
+      }, 2000);
 
-  const userMessage = {
-    role: "user",
-    text: code
+    } catch (err) {
+      console.error("Copy failed:", err);
+    }
   };
 
-  setMessages(prev => [...prev, userMessage]);
+  // SEND TEXT
+  const send = async () => {
 
-  const currentCode = code;
-  setCode("");
+    if (!code.trim()) return;
 
-  // RESET textarea height 👇
-  requestAnimationFrame(() => {
-    const textarea = document.querySelector(".promptInput");
-    if (textarea) {
-      textarea.style.height = "auto";
-    }
-  });
+    if (!started) setStarted(true);
 
-  setLoading(true);
+    const userMessage = {
+      role: "user",
+      text: code
+    };
 
-  try {
+    setMessages(prev => [...prev, userMessage]);
 
-    const res = await fetch("http://127.0.0.1:8000/generate-tests", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ code: currentCode })
+    const currentCode = code;
+    setCode("");
+
+    // RESET textarea height 👇
+    requestAnimationFrame(() => {
+      const textarea = document.querySelector(".promptInput");
+      if (textarea) {
+        textarea.style.height = "auto";
+      }
     });
 
-    const data = await res.json();
+    setLoading(true);
 
-    setMessages(prev => [
-      ...prev,
-      { role: "bot", text: data.tests }
-    ]);
+    try {
 
-  } catch (error) {
+      const res = await fetch("http://127.0.0.1:8000/generate-tests", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: currentCode })
+      });
 
-    setMessages(prev => [
-      ...prev,
-      { role: "bot", text: "Error while generating tests." }
-    ]);
+      const data = await res.json();
 
-  } finally {
-    setLoading(false);
-  }
-};
+      setMessages(prev => [
+        ...prev,
+        { role: "bot", text: data.tests }
+      ]);
+
+    } catch (error) {
+
+      setMessages(prev => [
+        ...prev,
+        { role: "bot", text: "Error while generating tests." }
+      ]);
+
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // UPLOAD FILE
   const uploadFile = async () => {
@@ -138,7 +152,27 @@ const send = async () => {
             key={i}
             className={`message ${msg.role}`}
           >
-            <pre>{msg.text}</pre>
+
+            <div className="codeBlock">
+
+              <div className="codeHeader">
+                <button
+                  className="copyButton"
+                  onClick={() => copyToClipboard(msg.text, i)}
+                  title="Copy code"
+                >
+                  <FaRegCopy />
+                </button>
+
+                {copiedIndex === i && (
+                  <span className="copiedText">Copied!</span>
+                )}
+              </div>  
+
+
+              <pre>{msg.text}</pre>
+
+            </div>
           </div>
         ))}
 

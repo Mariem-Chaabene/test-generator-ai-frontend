@@ -89,10 +89,6 @@ button {
   font-weight: 600;
 }
 
-button:hover {
-  background: #1d4ed8;
-}
-
 /* Loading */
 
 .loading {
@@ -224,7 +220,6 @@ button:hover {
 
 .message {
   max-width: 80%;
-  padding: 10px;
   border-radius: 8px;
 }
 
@@ -288,7 +283,7 @@ button:hover {
   align-self: flex-start;
   width: fit-content;
   max-width: 90%;
-
+  position: relative;
 }
 
 /* input en bas */
@@ -322,17 +317,61 @@ button:hover {
 
 
 .codeBlock {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: flex-end;
   width: 100%;
-  max-height: 400px;   
-  overflow-y: auto;    
-  overflow-x: auto;
+  overflow: auto;    
   border-radius: 8px;
   padding: 10px;
 }
+
+
+.codeHeader {
+  display: flex;
+  justify-content: flex-end; 
+  margin-bottom: 6px;
+}
+
+.codeHeader {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.copiedText {
+  font-size: 12px;
+  color: rgb(0, 74, 119);
+  font-weight: 600;
+}
+
 
 .codeBlock pre {
   margin: 0;
   white-space: pre;   
   font-family: monospace;
   font-size: 13px;
+}
+
+
+.copyButton {
+  right: 28px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  color: rgb(0, 74, 119);
+  background-color: transparent;
+  cursor: pointer;
+  z-index: 100;
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.copyButton:hover {
+  color: white;
 }
