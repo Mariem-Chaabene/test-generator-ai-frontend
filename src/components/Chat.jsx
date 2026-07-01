@@ -230,7 +230,14 @@ export default function Chat() {
               onChange={(e) => setFile(e.target.files[0])}
             />
           </label>
-
+				{file && (
+					<div className="uploadedFile">
+						<span>📄 {file.name}</span>
+						<button
+							className="removeFile" onClick={() => setFile(null)}> ✕
+						</button>
+					</div>
+				)}
           <textarea
             className="promptInput"
             placeholder="Paste code..."
