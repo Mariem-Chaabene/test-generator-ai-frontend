@@ -10,6 +10,20 @@ export default function Chat() {
   const [started, setStarted] = useState(false);
   const [copiedIndex, setCopiedIndex] = useState(null);
   const endRef = useRef(null);
+  const identityId = localStorage.getItem("identity_id");
+
+
+  useEffect(() => {
+    let identity = localStorage.getItem("identity_id");
+
+    if (!identity) {
+      identity = crypto.randomUUID();
+      localStorage.setItem("identity_id", identity);
+    }
+
+    console.log("Identity:", identity);
+  }, []);
+
 
   // auto scroll like ChatGPT
   useEffect(() => {
@@ -60,11 +74,13 @@ export default function Chat() {
     setLoading(true);
 
     try {
-
       const res = await fetch("http://127.0.0.1:8000/generate-tests", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code: currentCode })
+        body: JSON.stringify({ 
+          code: currentCode,
+          identity_id: identityId
+         })
       });
 
       const data = await res.json();
@@ -123,7 +139,7 @@ export default function Chat() {
 
       const formData = new FormData();
       formData.append("file", file);
-
+      formData.append("identity_id", identityId);
       const res = await fetch(
         "http://127.0.0.1:8000/upload-java",
         {
