@@ -14,3 +14,18 @@ export async function createGuestIdentity() {
 
     return response.json();
 }
+
+export async function getMe(token) {
+    const response = await fetch("http://127.0.0.1:8000/auth/me", {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`,
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error("Failed to get current identity");
+    }
+
+    return response.json();
+}

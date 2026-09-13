@@ -1,0 +1,140 @@
+.auth-modal-overlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 2000;
+}
+
+.auth-modal {
+    position: relative;
+
+    width: 400px;
+    max-width: calc(100% - 40px);
+
+    padding: 30px;
+
+    background: white;
+    border-radius: 16px;
+
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.auth-modal h2 {
+    margin: 0;
+    text-align: center;
+    font-size: 24px;
+}
+
+.auth-modal-subtitle {
+    text-align: center;
+    color: #6b7280;
+    margin-bottom: 25px;
+}
+
+.auth-modal-close {
+    position: absolute;
+
+    top: 12px;
+    right: 15px;
+
+    border: none;
+    background: transparent;
+
+    font-size: 26px;
+    cursor: pointer;
+
+    color: #6b7280;
+}
+
+.google-button {
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+
+    background: white;
+
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.google-button:hover {
+    background: #f9fafb;
+}
+
+.google-button span {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.auth-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin: 20px 0;
+
+    color: #9ca3af;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: "";
+    flex: 1;
+
+    height: 1px;
+    background: #e5e7eb;
+}
+
+.auth-input {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 12px;
+
+    margin-bottom: 12px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+
+    font-size: 14px;
+}
+
+.auth-input:focus {
+    outline: none;
+    border-color: #111827;
+}
+
+.auth-submit-button {
+    width: 100%;
+
+    padding: 12px;
+
+    margin-top: 5px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #111827;
+    color: white;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    cursor: pointer;
+}
+
+.auth-submit-button:hover {
+    background: #1f2937;
+}
