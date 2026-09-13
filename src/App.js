@@ -33,7 +33,7 @@ export default function App() {
 
 return (
     <div className="layout">
-        <Sidebar />
+        <Sidebar conversationCount={0} />
         <Chat />
         {identity?.type === "guest" && (
             
